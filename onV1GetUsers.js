@@ -5,7 +5,7 @@ import{consoleLog}from"./consoleLog.js";
  * 得到所有用户
  */
 function onV1GetUsers(context){
-    consoleLog(USERS);
+    consoleLog("查询所有用户",USERS);
     context.response.body=USERS;
 }
 export{onV1GetUsers}
