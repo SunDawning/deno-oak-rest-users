@@ -7,7 +7,7 @@ import{consoleLog}from"./consoleLog.js";
 function onV1GetUsers(context){
     let path=context.matched[0].path;
     consoleLog("接收到请求",path);
-    consoleLog("查询所有用户",USERS);
+    consoleLog("查询所有用户",USERS.slice(0,3),"...");
     context.response.body=USERS;
 }
 export{onV1GetUsers}
