@@ -9,6 +9,7 @@ import{onGetRoot}from"./onGetRoot.js";
 router.get("/",onGetRoot);
 import{onGetJS}from"./onGetJS.js";
 router.get("/sendObjectInJSON.js",onGetJS);
+router.get("/createButton.js",onGetJS);
 import{onV1GetUsers}from"./onV1GetUsers.js";
 router.get("/v1/users",onV1GetUsers);
 import{onV1PostUser}from"./onV1PostUser.js";
