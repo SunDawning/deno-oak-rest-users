@@ -10,7 +10,7 @@ router.get("/",onGetRoot);
 import{onGetJS}from"./onGetJS.js";
 router.get("/index.html.js",onGetJS);
 router.get("/sendObjectInJSON.js",onGetJS);
-router.get("/createButton.js",onGetJS);
+router.get("/createFetchButton.js",onGetJS);
 import{onV1GetUsers}from"./onV1GetUsers.js";
 router.get("/v1/users",onV1GetUsers);
 import{onV1PostUser}from"./onV1PostUser.js";
