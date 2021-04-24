@@ -7,31 +7,31 @@
   <body>
     <script type="module">
       import{
-        putObjectInJSON,
-        postObjectInJSON,
+	  putObjectInJSON,
+	  postObjectInJSON,
       }from"./sendObjectInJSON.js";
       function createButton(innerText,onClick){
-        let button=document.createElement("button");
-        button.innerText=innerText;
-        document.body.appendChild(button);
-        button.addEventListener("click",onClick);
+	  let button=document.createElement("button");
+	  button.innerText=innerText;
+	  document.body.appendChild(button);
+	  button.addEventListener("click",onClick);
       }
+      createButton("所有用户",function(event){window.fetch("/v1/users");});
+      createButton("所有用户ID",function(event){window.fetch("/v1/userIDs");});
+      createButton("查询用户",function(event){window.fetch("/v1/users/1");});
       createButton("添加用户",function(event){
-        postObjectInJSON("/v1/users",{
-          name:"王五",
-          age:"8",
-        });
+	  postObjectInJSON("/v1/users",{
+	      name:"王五",
+	      age:"8",
+	  });
       });
       createButton("修改用户",function(event){
-        putObjectInJSON("/v1/users/1",{
-          name:"王五",
-          age:8,
-        });
-      });
-      createButton("删除用户",function(event){
-	  window.fetch("/v1/users/1",{
-	      method:"DELETE",
+	  putObjectInJSON("/v1/users/1",{
+	      name:"王五",
+	      age:8,
 	  });
+      });
+      createButton("删除用户",function(event){window.fetch("/v1/users/1",{method:"DELETE"});
       });
     </script>
   </body>
