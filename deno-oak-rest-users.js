@@ -15,6 +15,7 @@ function onGetRoot(context){
 router.get("/",onGetRoot);
 /*
  * GET访问＂/v1/users＂
+ * 得到所有用户
  */
 let USERS=[
     {
@@ -29,14 +30,23 @@ let USERS=[
     },
 ];
 function onV1GetUsers(context){
-    context.response.body={
-        users:USERS,
-    };
+    context.response.body=USERS;
 }
 router.get("/v1/users",onV1GetUsers);
 /*
+ * GET访问＂/v1/userIDs＂
+ * 得到所有用户的ID
+ */
+function onV1GetUserIDs(context){
+    context.response.body=USERS.map(function(user){
+        return user.id;
+    });
+}
+router.get("/v1/userIDs",onV1GetUserIDs);
+/*
  * GET访问＂/v1/users/:id＂
  * ＂/v1/users/1＂得到到＂context.params＂为：{ id: "1" }
+ * 根据用户的ID来取用户的数据
  */
 function onV1GetUser(context){
     consoleLog(context.params);
