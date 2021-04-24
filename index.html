@@ -2,6 +2,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" name="viewport" content="width=device-width">
+    <!-- 使用Deno和Oak构建REST API - 知乎: https://zhuanlan.zhihu.com/p/143780633 -->    
     <title>使用Deno和Oak构建REST API</title>
   </head>
   <body>
@@ -14,25 +15,37 @@
 	  let button=document.createElement("button");
 	  button.innerText=innerText;
 	  document.body.appendChild(button);
-	  button.addEventListener("click",onClick);
+	  function onClickPrint(event){
+	      onClick(event).then(function(response){
+		  return response.json();
+	      }).then(function(json){
+		  output.innerText=JSON.stringify(json);
+	      });
+	  }
+	  button.addEventListener("click",onClickPrint);
       }
-      createButton("所有用户",function(event){window.fetch("/v1/users");});
-      createButton("所有用户ID",function(event){window.fetch("/v1/userIDs");});
-      createButton("查询用户",function(event){window.fetch("/v1/users/1");});
+      createButton("所有用户",function(event){return window.fetch("/v1/users");});
+      createButton("所有用户ID",function(event){return window.fetch("/v1/userIDs");});
+      createButton("查询用户",function(event){return window.fetch("/v1/users/1");});
       createButton("添加用户",function(event){
-	  postObjectInJSON("/v1/users",{
-	      name:"王五",
-	      age:"8",
-	  });
-      });
-      createButton("修改用户",function(event){
-	  putObjectInJSON("/v1/users/1",{
+	  return postObjectInJSON("/v1/users",{
 	      name:"王五",
 	      age:8,
 	  });
       });
-      createButton("删除用户",function(event){window.fetch("/v1/users/1",{method:"DELETE"});
+      createButton("修改用户",function(event){
+	  return putObjectInJSON("/v1/users/1",{
+	      name:"王五",
+	      age:8,
+	  });
       });
+      createButton("删除用户",function(event){return window.fetch("/v1/users/1",{method:"DELETE"});
+					     });
+      let output=document.createElement("pre");
+      output.style.cssText=`
+white-space:pre-wrap;
+`;
+      document.body.appendChild(output);      
     </script>
   </body>
 </html>
