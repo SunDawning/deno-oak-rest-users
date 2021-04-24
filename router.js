@@ -8,6 +8,7 @@ let router=new Router();
 import{onGetRoot}from"./onGetRoot.js";
 router.get("/",onGetRoot);
 import{onGetJS}from"./onGetJS.js";
+router.get("/index.html.js",onGetJS);
 router.get("/sendObjectInJSON.js",onGetJS);
 router.get("/createButton.js",onGetJS);
 import{onV1GetUsers}from"./onV1GetUsers.js";
