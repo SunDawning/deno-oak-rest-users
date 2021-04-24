@@ -19,4 +19,6 @@ import{onV1GetUser}from"./onV1GetUser.js";
 router.get("/v1/users/:id",onV1GetUser);
 import{onV1PutUser}from"./onV1PutUser.js";
 router.put("/v1/users/:id",onV1PutUser);
+import{onV1DeleteUser}from"./onV1DeleteUser.js";
+router.delete("/v1/users/:id",onV1DeleteUser);
 export{router}
