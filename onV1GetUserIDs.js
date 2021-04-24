@@ -1,7 +1,4 @@
-import{
-    getUnDeletedUsers,
-    USERS,
-}from"./USERS.js";
+import{USERS}from"./USERS.js";
 import{consoleLog}from"./consoleLog.js";
 /*
  * GET访问＂/v1/userIDs＂
@@ -9,7 +6,7 @@ import{consoleLog}from"./consoleLog.js";
  */
 function onV1GetUserIDs(context){
     consoleLog("接收到获取所有用户的ID的请求");
-    let USERIDs=getUnDeletedUsers().map(function(user){
+    let USERIDs=USERS.map(function(user){
         return user.id;
     });
     context.response.body=USERIDs;
