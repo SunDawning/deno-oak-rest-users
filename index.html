@@ -15,36 +15,21 @@
 	  let button=document.createElement("button");
 	  button.innerText=innerText;
 	  document.body.appendChild(button);
-	  function onClickPrint(event){
-	      onClick(event).then(function(response){
-		  return response.json();
-	      }).then(function(json){
+	  function onClickPrintJSON(event){
+	      onClick(event).then(function(response){return response.json();}).then(function(json){
 		  output.innerText=JSON.stringify(json);
 	      });
 	  }
-	  button.addEventListener("click",onClickPrint);
+	  button.addEventListener("click",onClickPrintJSON);
       }
       createButton("所有用户",function(event){return window.fetch("/v1/users");});
       createButton("所有用户ID",function(event){return window.fetch("/v1/userIDs");});
       createButton("查询用户",function(event){return window.fetch("/v1/users/1");});
-      createButton("添加用户",function(event){
-	  return postObjectInJSON("/v1/users",{
-	      name:"王五",
-	      age:8,
-	  });
-      });
-      createButton("修改用户",function(event){
-	  return putObjectInJSON("/v1/users/1",{
-	      name:"王五",
-	      age:8,
-	  });
-      });
-      createButton("删除用户",function(event){return window.fetch("/v1/users/1",{method:"DELETE"});
-					     });
+      createButton("添加用户",function(event){return postObjectInJSON("/v1/users",{name:"王五",age:8});});
+      createButton("修改用户",function(event){return putObjectInJSON("/v1/users/1",{name:"王五",age:8});});
+      createButton("删除用户",function(event){return window.fetch("/v1/users/1",{method:"DELETE"});});
       let output=document.createElement("pre");
-      output.style.cssText=`
-white-space:pre-wrap;
-`;
+      output.style.cssText=`white-space:pre-wrap;word-break:break-word;`;
       document.body.appendChild(output);      
     </script>
   </body>
