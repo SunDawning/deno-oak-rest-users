@@ -11,8 +11,8 @@ function onV1DeleteUser(context){
     let user=USERS.filter(function(user){
         return user.id===id;
     })[0];
+    user.deleted=true;
     context.response.body=user;
-    USERS.splice(id-1,1);
     consoleLog("已删除用户",user);
 }
 export{onV1DeleteUser}

@@ -13,4 +13,15 @@ let USERS=[
         age:20,
     },
 ];
-export{USERS}
+/**
+ * 查询所有未被删除的用户
+ */
+function getUnDeletedUsers(){
+    return USERS.filter(function(user){
+        return !user.deleted;
+    });
+}
+export{
+    getUnDeletedUsers,
+    USERS,
+}
