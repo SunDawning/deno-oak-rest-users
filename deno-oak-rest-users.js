@@ -10,7 +10,8 @@ function onGetRoot(context){
 router.get("/",onGetRoot);
 application.use(router.routes());
 let port=8080;
-console.log(`Listen http://localhost:${port}`);
+import{consoleLog}from"./consoleLog.js";
+consoleLog(`Listen http://localhost:${port}`);
 await application.listen({
     port:port,
 });
