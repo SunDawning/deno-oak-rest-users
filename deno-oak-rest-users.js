@@ -6,7 +6,7 @@ import{consoleLog}from"./consoleLog.js";
 let router=new Router();
 let application=new Application();
 /*
- * 访问＂/"
+ * GET访问＂/"
  */
 function onGetRoot(context){
     consoleLog(context);
@@ -14,7 +14,7 @@ function onGetRoot(context){
 }
 router.get("/",onGetRoot);
 /*
- * 访问＂/v1/users＂
+ * GET访问＂/v1/users＂
  */
 let USERS=[
     {
@@ -29,9 +29,23 @@ let USERS=[
     },
 ];
 function onV1GetUsers(context){
-    context.response.body={users:USERS};
+    context.response.body={
+        users:USERS,
+    };
 }
 router.get("/v1/users",onV1GetUsers);
+/*
+ * GET访问＂/v1/users/:id＂
+ * ＂/v1/users/1＂得到到＂context.params＂为：{ id: "1" }
+ */
+function onV1GetUser(context){
+    consoleLog(context.params);
+    let id=parseInt(context.params.id);
+    context.response.body=USERS.filter(function(user){
+        return user.id===id;
+    })[0];
+}
+router.get("/v1/users/:id",onV1GetUser);
 application.use(router.routes());
 let port=8080;
 consoleLog(`Listen http://localhost:${port}`);
