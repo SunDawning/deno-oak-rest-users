@@ -15,4 +15,6 @@ import{onV1GetUserIDs}from"./onV1GetUserIDs.js";
 router.get("/v1/userIDs",onV1GetUserIDs);
 import{onV1GetUser}from"./onV1GetUser.js";
 router.get("/v1/users/:id",onV1GetUser);
+import{onV1PutUser}from"./onV1PutUser.js";
+router.put("/v1/users/:id",onV1PutUser);
 export{router}

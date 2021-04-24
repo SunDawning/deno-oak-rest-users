@@ -6,28 +6,56 @@
   </head>
   <body>
     <script type="module">
-      let button=document.createElement("button");
-      button.innerText="添加用户";
-      document.body.appendChild(button);
-      function onClick(event){
-        /**
-         * 将object发送到url
-         */
-        function postObjectInJSON(url,object){
-          let headers=new Headers();
-          headers.set("content-type","application/json; charset=utf-8")
-          window.fetch(url,{
-            method:"POST",
-            headers:headers,
-            body:JSON.stringify(object),
+      function createAddUserButton(){
+        let button=document.createElement("button");
+        button.innerText="添加用户";
+        document.body.appendChild(button);
+        function onClick(event){
+          /**
+           * 将object发送到url
+           */
+          function postObjectInJSON(url,object){
+            let headers=new Headers();
+            headers.set("content-type","application/json; charset=utf-8")
+            window.fetch(url,{
+              method:"POST",
+              headers:headers,
+              body:JSON.stringify(object),
+            });
+          }
+          postObjectInJSON("/v1/users",{
+            name:"王五",
+            age:"8",
           });
-        }        
-        postObjectInJSON("/v1/users",{
-          name:"王五",
-          age:"8",
-        });
+        }
+        button.addEventListener("click",onClick);
       }
-      button.addEventListener("click",onClick);
+      createAddUserButton();
+      function createPutUserButton(){
+        let button=document.createElement("button");
+        button.innerText="修改用户";
+        document.body.appendChild(button);
+        function onClick(event){
+          /**
+           * 将object发送到url
+           */
+          function putObjectInJSON(url,object){
+            let headers=new Headers();
+            headers.set("content-type","application/json; charset=utf-8")
+            window.fetch(url,{
+              method:"put",
+              headers:headers,
+              body:JSON.stringify(object),
+            });
+          }
+          putObjectInJSON("/v1/users/1",{
+            name:"王五",
+            age:8,
+          });
+        }
+        button.addEventListener("click",onClick);
+      }
+      createPutUserButton();
     </script>
   </body>
 </html>
